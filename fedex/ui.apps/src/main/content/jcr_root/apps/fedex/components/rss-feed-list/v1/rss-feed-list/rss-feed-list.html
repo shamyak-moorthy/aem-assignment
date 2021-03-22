@@ -1,0 +1,21 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder"
+     data-emptytext="${component.title @ i18n}"></div>
+
+<sly data-sly-use.rssModel="com.fedex.core.slingmodels.RssFeedModel"
+     data-sly-test.rssList="${rssModel.rssFeedDataSource == 'automatic' ? rssModel.rssFeed.channel.items : rssModel.rssItems}">
+</sly>
+
+<div data-sly-test="${rssList}" data-sly-repeat="${rssList}"
+     class="teaser aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--4">
+  <div data-sly-test="${itemList.count <= rssModel.limit}" class="cmp-teaser">
+    <div class="cmp-teaser__content">
+      <h3 class="cmp-teaser__title">
+        ${item.title @ context='text'}
+      </h3>
+      <div class="cmp-teaser__description"><p>${item.description @ context='text'}</p>
+      </div>
+      <div class="cmp-teaser__description"><p>${item.pubDate @ context='text'}</p>
+      </div>
+    </div>
+  </div>
+</div>

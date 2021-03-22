@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="RSS Feed List"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+  <content
+      jcr:primaryType="nt:unstructured"
+      sling:resourceType="granite/ui/components/coral/foundation/tabs"
+      maximized="{Boolean}true">
+    <items jcr:primaryType="nt:unstructured">
+      <configuration
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Configuration"
+          sling:resourceType="granite/ui/components/coral/foundation/container"
+          margin="{Boolean}true">
+        <items jcr:primaryType="nt:unstructured">
+          <columns
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+              margin="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+              <column
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                  <rssFeedDataSource
+                      jcr:primaryType="nt:unstructured"
+                      granite:class="cq-dialog-dropdown-showhide"
+                      sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                      fieldDescription="Please select RSS Feed Data Source."
+                      fieldLabel="RSS Feed Data Source"
+                      name="./rssFeedDataSource">
+                    <items jcr:primaryType="nt:unstructured">
+                      <automatic
+                          jcr:primaryType="nt:unstructured"
+                          selected="{Boolean}true"
+                          text="Automatic (from API)"
+                          value="automatic"/>
+                      <manual
+                          jcr:primaryType="nt:unstructured"
+                          text="Manual"
+                          value="manual"/>
+                    </items>
+                    <granite:data
+                        jcr:primaryType="nt:unstructured"
+                        cq-dialog-dropdown-showhide-target=".showhidedatasourcetype"/>
+                  </rssFeedDataSource>
+                  <limit
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                      fieldDescription="Please enter Limit for the number of RSS items to be displayed."
+                      fieldLabel="RSS Feed Limit"
+                      required="{Boolean}true"
+                      name="./limit"/>
+                  <rss-container
+                      granite:class="showhidedatasourcetype"
+                      sling:resourceType="granite/ui/components/coral/foundation/container"
+                      jcr:primaryType="nt:unstructured">
+                    <items jcr:primaryType="nt:unstructured">
+                      <rssFeedItems
+                          jcr:primaryType="nt:unstructured"
+                          fieldLabel="RSS Feed Items"
+                          fieldDescription="Click 'Add' to add a new item"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                          class="multifield-full-width"
+                          composite="{Boolean}true">
+                        <field
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="RSS Feed Item"
+                            name="./rssItems"
+                            granite:class="accordion-multifield-item"
+                            sling:resourceType="granite/ui/components/coral/foundation/accordion">
+                          <items
+                              jcr:primaryType="nt:unstructured">
+                            <rss-item
+                                jcr:title="RSS Feed Item"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                jcr:primaryType="nt:unstructured">
+                              <items jcr:primaryType="nt:unstructured">
+                                <title
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    granite:class="accordion-multifield-item-title"
+                                    fieldDescription="Please enter Title."
+                                    fieldLabel="Title"
+                                    required="{Boolean}true"
+                                    name="./title"/>
+                                <description
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Please enter Description."
+                                    fieldLabel="Description"
+                                    required="{Boolean}true"
+                                    name="./description"/>
+                                <pubDate
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Please enter Publication Date."
+                                    fieldLabel="Publication Date"
+                                    required="{Boolean}true"
+                                    name="./pubDate"/>
+                              </items>
+                            </rss-item>
+                          </items>
+                        </field>
+                      </rssFeedItems>
+                    </items>
+                    <granite:data
+                        jcr:primaryType="nt:unstructured"
+                        showhidetargetvalue="manual"/>
+                  </rss-container>
+                </items>
+              </column>
+            </items>
+          </columns>
+        </items>
+      </configuration>
+    </items>
+  </content>
+</jcr:root>
